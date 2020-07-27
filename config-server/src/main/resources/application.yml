@@ -1,0 +1,21 @@
+#设置注册中心的地址： http://localhost:8761/eureka/ , 与 eureka-server 中的配置 application.yml 遥相呼应
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+  # uri 表示 git 地址：
+  # label 表示分支
+  # searchPaths 表示目录：
+  # 检查git上的文件名是否跟当前微服务的名称一致，例如当前微服务在注册中心配置的名称为new-service
+  #,你的git上的配置文件只能是new-service-dev.properties或者new-service-dev.yml，不能为其他名字
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://github.com/feng52599/springcloudConfig/
+          searchPaths: respo

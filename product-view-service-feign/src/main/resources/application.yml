@@ -1,0 +1,29 @@
+# springcloud微服务feign消费模式解决 com.netflix.client.ClientException: Load balancer does not have available server for client：xxx
+#ribbon:
+#  eureka:
+#    enabled: true
+#      http://localhost:9411/zipkin/dependency/查看调用链条
+spring:
+  application:
+    name: product-view-service-feign
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+  zipkin:
+    base-url: http://localhost:9411
+
+#新增允许路径访问
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+feign.hystrix.enabled: true
